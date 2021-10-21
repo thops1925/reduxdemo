@@ -1,12 +1,16 @@
-function Modal({ title, contact, del, id }) {
-  const handleDelete = () => {
-    del(id);
-  };
+import { useSelector } from 'react-redux';
+import Items from './Items';
+function Modal() {
+  const listitem = useSelector((state) => state.notes);
+
+  // const handleDelete = () => {
+  //   del(id);
+  // };
   return (
     <div>
-      <h1>{title}</h1>
-      <h1>{contact}</h1>
-      <button onClick={handleDelete}>Delete</button>
+      {listitem.map((item) => (
+        <Items key={item.id} title={item.title} quotes={item.quotes} />
+      ))}
     </div>
   );
 }

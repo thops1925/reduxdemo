@@ -1,20 +1,21 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../redux/todoSlice';
 
-function Create({ add }) {
+function Create() {
   const [isContact, setContact] = useState({
     title: '',
     quotes: '',
   });
+  // const listitem = useSelector((state) => state.notes);
 
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    add(isContact);
-    setContact({
-      title: '',
-      quotes: '',
-    });
+    dispatch(addTodo(isContact));
   };
 
+  // console.log(listitem);
   return (
     <div>
       <div>
@@ -35,6 +36,9 @@ function Create({ add }) {
           />
           <button type="submit">submit</button>
         </form>
+        {/* {listitem.map((item) => (
+          <h1>{item.title}</h1>
+        ))} */}
       </div>
     </div>
   );
